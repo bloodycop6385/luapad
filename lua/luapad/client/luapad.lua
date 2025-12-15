@@ -191,6 +191,25 @@ local function setupToolbar()
             menu:Open()
         end )
     end
+
+    addToolbarSpacer()
+
+    addToolbarItem( "Clear selected luapad-created items", "!luapadClearStuff", function()
+        local menu = DermaMenu()
+
+        menu:AddOption( "Clear clientside hooks", function()
+            RunConsoleCommand( "luapad_clearhooks" )
+        end )
+        if isSVUser then
+            menu:AddOption( "Clear ALL hooks", function()
+                RunConsoleCommand( "luapad_clearallhooks" )
+            end )
+        end
+        menu:AddOption( "Clear derma/vgui panels", function()
+            RunConsoleCommand( "luapad_clearpanels" )
+        end )
+        menu:Open()
+    end )
 end
 
 function luapad.Toggle()
